@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link, NavLink } from 'react-router-dom';
 import { useFormWithValidation } from '../../hooks/useFormValidation';
+import { userChangeAction } from '../../services/actions/actions';
 import Notification from '../Notification/Notification';
 
 function Profile() {
@@ -18,8 +19,7 @@ function Profile() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(authUserAction(validateForm.values));
-    console.log(validateForm.values);
+    dispatch(userChangeAction({...validateForm.values, currentUser: user.email}));
     setEdit(false);
   };
 

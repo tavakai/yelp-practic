@@ -31,7 +31,7 @@ class Api {
 
   // Редактировать профиль пользователя
   changeUser(user) {
-    return axios.post(`${this.baseUrl}/profile-edit`, user)
+    return axios.patch(`${this.baseUrl}/profile-edit`, user)
   }
 
   // Получить посты пользователя

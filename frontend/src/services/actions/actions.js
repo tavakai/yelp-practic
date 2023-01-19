@@ -31,9 +31,9 @@ export const authCheckAction = () => (dispatch) => {
     dispatch(isLoadingFalse());
   })
 }
-export const userChangeAction = () => (dispatch) => {
-  api.changeUser().then((res) => {
-    dispatch(authCheck(res.data))
+export const userChangeAction = (user) => (dispatch) => {
+  api.changeUser(user).then((res) => {
+    dispatch(userChange(res.data))
   })
   .catch(err => {
     console.log(`Error authorization ${err}`);

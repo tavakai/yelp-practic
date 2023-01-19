@@ -50,6 +50,29 @@ router.post('/auth-check', (req, res) => {
   return res.sendStatus(401);
 });
 
+router.patch('/profile-edit', async (req, res) => {
+  try {
+    const { name, email, currentUser } = req.body;
+    const user = await User.update({
+      name,
+      email,
+    }, {
+      where: {
+        email: currentUser,
+      },
+    });
+    const result = await User.findOne({
+      where: {
+        email,
+      },
+    });
+    req.session.user = { id: result.id, name: result.name, email: result.email };
+    res.json(result);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 router.get('/signout', (req, res) => {
   // удалить куку
   res.clearCookie('user_sid');
