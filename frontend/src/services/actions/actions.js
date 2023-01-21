@@ -1,4 +1,4 @@
-import { AUTH_USER, SIGNOUT, REG_USER, AUTH_CHECK, IS_LOADING_TRUE, IS_LOADING_FALSE, USER_EDIT } from '../types';
+import { AUTH_USER, SIGNOUT, REG_USER, AUTH_CHECK, IS_LOADING_TRUE, IS_LOADING_FALSE, USER_EDIT, GET_MOVIES } from '../types';
 import api from '../../utils/api';
 
 // Actions
@@ -9,6 +9,7 @@ export const authCheck = (payload) => ({type: AUTH_CHECK, payload});
 export const isLoadingTrue = () => ({type: IS_LOADING_TRUE});
 export const isLoadingFalse = () => ({type: IS_LOADING_FALSE});
 export const userChange = (payload) => ({type: USER_EDIT, payload});
+export const getMovies = (payload) => ({type: GET_MOVIES, payload});
 
 // Creators
 
@@ -49,4 +50,14 @@ export const isLoadingTrueAction = () => (dispatch) => {
 }
 export const isLoadingFalseAction = () => (dispatch) => {
   dispatch(isLoadingFalse());
+}
+
+// Data
+export const getMoivesAction = () => (dispatch) => {
+  api.getMovies().then(res => {
+    dispatch(getMovies(res.data))
+  })
+  .catch(err => {
+    console.log(err);
+  })
 }

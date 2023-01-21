@@ -8,3 +8,6 @@ export const USER_EDIT = 'USER_EDIT';
 // REQUESTS
 export const IS_LOADING_TRUE = 'IS_LOADING_TRUE';
 export const IS_LOADING_FALSE = 'IS_LOADING_FALSE';
+
+// DATA
+export const GET_MOVIES = 'GET_MOVIES';

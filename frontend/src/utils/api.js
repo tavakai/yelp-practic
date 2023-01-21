@@ -51,14 +51,9 @@ class Api {
       .then((res) => this.getResponseData(res));
   }
 
-  // Добавить новый пост
-  addEvent(event) {
-    return fetch(`${this.baseUrl}/events`, {
-      method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify(event),
-    })
-      .then((res) => this.getResponseData(res));
+  // Загрузка начальных данных
+  getMovies() {
+    return axios.get('https://api.nomoreparties.co/beatfilm-movies');
   }
 
   // Получить одно событие

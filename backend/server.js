@@ -29,6 +29,9 @@ app.use(
   cors({
     credentials: true,
     origin: true,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
   }),
 );
 app.use(morgan('dev'));
@@ -36,28 +39,6 @@ app.use(express.urlencoded({ extended: 'true' }));
 app.use(express.json());
 app.use(session(sessionConfig));
 
-// app.get('/', async (req, res) => {
-//   const allPosts = await Restoraunt.findAll();
-//   res.json(allPosts);
-// });
-
-// app.post('/posts', async (req, res) => {
-//   const { message } = req.body;
-//   const newPost = await Post.create({ message });
-//   res.json(newPost);
-// });
-
-// app.delete('/posts/:id', async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     await Post.destroy({ where: { id } });
-//     res.sendStatus(200);
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });
-
-// app.use('/', indexRouter);
 app.use('/', authRouter);
 
 app.listen(PORT, () => {
