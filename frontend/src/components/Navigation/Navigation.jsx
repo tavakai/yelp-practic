@@ -1,8 +1,10 @@
 import logo from "../../images/logo.png";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import btn_icon from "../../images/icon__COLOR_icon-main.svg";
 import { useSelector } from "react-redux";
+import ProtectedRoute from "../hoc/ProtectedRoute";
+import Categories from "../Categories/Categories";
 
 const Navigation = () => {
   const { user, isLoggedIn } = useSelector(state => state.auth);
@@ -10,12 +12,12 @@ const Navigation = () => {
     <nav className="nav">
       <ul className="nav__bar">
         <li className="nav__item">
-      <Link to="/" className="nav__logo">
+      <NavLink to="/" className="nav__logo">
         <img className="nav__logo-main" src={logo} alt="header-logo" />
-      </Link>
+      </NavLink>
       </li>
       <li className="nav__item">
-          <h1 className="header__title">Yelp bootcamp</h1>
+          <h1 className="header__title">Fake store</h1>
         </li>
         {
           isLoggedIn
@@ -33,6 +35,9 @@ const Navigation = () => {
           )
         }
       </ul>
+      {
+        isLoggedIn && <Categories />
+      }
     </nav>
   );
 };

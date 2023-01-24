@@ -8,20 +8,27 @@ import { getMoivesAction } from "../../../services/actions/actions";
 
 const MoviesCardList = ({}) => {
   const dispatch = useDispatch();
-  const { movies } = useSelector(state => state.movies);
-  useEffect(() => {
-    dispatch(getMoivesAction());
-  }, [])
+  const { cards } = useSelector(state => state.cards);
+  // useEffect(() => {
+  //   dispatch(getMoivesAction());
+  // }, [])
+  
   return (
     <section className="MoviesCardList">
         <div className="MoviesCardList__content">
-          {movies?.map((card) => {
-            return (
-              <MoviesCard key={card.id} card={card} />
-            );
-          })}
+          {
+            cards ? (
+              cards?.map((card) => {
+                return (
+                  <MoviesCard key={card.id} card={card} />
+                );
+              })
+            ) : (
+              <Preloader />
+            )
+          }
         </div>
-      {!movies.length ? <NotResults /> : null}
+      {/* {!movies ? <NotResults /> : null} */}
     </section>
   );
 };

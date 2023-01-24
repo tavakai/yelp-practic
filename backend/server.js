@@ -6,7 +6,8 @@ const session = require('express-session');
 const store = require('session-file-store');
 const { Restoraunt } = require('./db/models');
 const authRouter = require('./routes/authRouter');
-const indexRouter = require('./routes/indexRouter');
+const moviesRouter = require('./routes/moviesRouter');
+const listRouter = require('./routes/listRouter');
 
 const app = express();
 const PORT = 3001 || process.env.PORT;
@@ -40,6 +41,8 @@ app.use(express.json());
 app.use(session(sessionConfig));
 
 app.use('/', authRouter);
+app.use('/movies', moviesRouter);
+app.use('/list', listRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is started on port ${PORT}`);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Notification from '../Notification/Notification';
-import { useFormWithValidation } from '../../hooks/useFormValidation';
+import useFormWithValidation from '../../hooks/useFormValidation';
 import { regUserAction } from '../../services/actions/actions';
 import { useDispatch } from 'react-redux';
 

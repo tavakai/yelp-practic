@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Notification from '../Notification/Notification';
-import { useFormWithValidation } from '../../hooks/useFormValidation';
+import useFormWithValidation from '../../hooks/useFormValidation';
 import { useDispatch, useSelector } from 'react-redux';
 import { authUserAction } from '../../services/actions/actions';
 import { useEffect } from 'react';
@@ -32,7 +32,7 @@ const Login = ({ responseStatus, modal}) => {
   return (
     <section className="login">
         <div className="content login__content">
-          <form action="#" name="login" className="login__form" onSubmit={handleSubmit}>
+          <form name="login" className="login__form" onSubmit={handleSubmit}>
             <fieldset className="login__fieldset">
               <legend>
                 <h2 className="login__title">Рады видеть!</h2>

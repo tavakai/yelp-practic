@@ -1,33 +1,41 @@
 import React from 'react';
 import * as moviesApi from '../../../utils/MoviesApi';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { isLikeAction } from '../../../services/actions/actions';
 
 const MoviesCard = ({card, saveCard, removeCard}) => {
-  const image = `${moviesApi.base_url}${card.image.url}`;
-  const movieNameRU = card.nameRU;
-  const movieLink = card.trailerLink;
-  const mins = card.duration % 60;
-  const hours = (card.duration - mins) / 60;
-  const movieDuration = `${hours}ч  ${mins}м`;
-
-  const cardMovie = useSelector(store => store.movies);
+  const dispatch = useDispatch();
+  const { title, price, description, image } = card;
   
+  const setLike = (id) => {
+    const like = !card.isLike
+    dispatch(isLikeAction({id, isLike: like}))
+  }
+  const shortDescription = (text) => {
+    if (text.length > 50) return `${text.substr(1, 100)}...`;
+    return text;
+  }
   return (
     <div className="card">
-      <a href={movieLink} className="card__link-img">
-        <img className="card__img" src={image} alt={movieNameRU} />
+      <a href="#" className="card__link-img">
+        <img className="card__img" src={image} alt={title} />
       </a>
-      <a href={movieLink} className="card__link-title" target="_blank" rel="noreferrer">
-        <h2 className="card__title">{movieNameRU}</h2>
+      <a href="#" className="card__link-title" target="_blank" rel="noreferrer">
+        <h2 className="card__title">{title}</h2>
       </a>
+      <p className="card__description">{shortDescription(description)}</p>
+
         <div className="card__likes">
-          <button onClick={() => saveCard(card)} type="button" className={`card__like ${cardMovie.likedMovies.includes(card) ? 'card__like_active' : ''}`} />
+          <button onClick={() => setLike(card.id)} type="button" className={`card__like ${card.isLike ? 'card__like_active' : ''}`} />
         </div>
+
       <hr className="card__line" />
-      <span className="card__duration">{movieDuration}</span>
-      <div className={`${cardMovie.filter ? 'card__delete-wrapper_hide' : 'card__delete-wrapper'}`} onClick={() => removeCard(card)}>
+      <span className="card__duration">{price}</span>
+
+      {/* <div className={`${cardMovie.filter ? 'card__delete-wrapper_hide' : 'card__delete-wrapper'}`} onClick={() => removeCard(card)}>
         <button className="card__delete-icon" />
-      </div>
+      </div> */}
+
     </div>
   );
 }

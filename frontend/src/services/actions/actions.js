@@ -1,4 +1,4 @@
-import { AUTH_USER, SIGNOUT, REG_USER, AUTH_CHECK, IS_LOADING_TRUE, IS_LOADING_FALSE, USER_EDIT, GET_MOVIES } from '../types';
+import { AUTH_USER, SIGNOUT, REG_USER, AUTH_CHECK, IS_LOADING_TRUE, IS_LOADING_FALSE, USER_EDIT, GET_MOVIES, GET_FILTER, RESET_LIST, LIKE_TOGGLE } from '../types';
 import api from '../../utils/api';
 
 // Actions
@@ -10,6 +10,9 @@ export const isLoadingTrue = () => ({type: IS_LOADING_TRUE});
 export const isLoadingFalse = () => ({type: IS_LOADING_FALSE});
 export const userChange = (payload) => ({type: USER_EDIT, payload});
 export const getMovies = (payload) => ({type: GET_MOVIES, payload});
+export const getCategoryList = (payload) => ({type: GET_FILTER, payload});
+export const resetList = () => ({type: RESET_LIST});
+export const setLike = (payload) => ({type: LIKE_TOGGLE, payload});
 
 // Creators
 
@@ -44,9 +47,9 @@ export const signOutAction = () => (dispatch) => {
   api.signOut().then(() => dispatch(signOut()));
 }
 
-// Requests
-export const isLoadingTrueAction = () => (dispatch) => {
-  dispatch(isLoadingTrue());
+// Likes
+export const isLikeAction = ({id, isLike}) => (dispatch) => {
+  dispatch(setLike({id, isLike}));
 }
 export const isLoadingFalseAction = () => (dispatch) => {
   dispatch(isLoadingFalse());
@@ -54,10 +57,29 @@ export const isLoadingFalseAction = () => (dispatch) => {
 
 // Data
 export const getMoivesAction = () => (dispatch) => {
+  dispatch(isLoadingTrue());
   api.getMovies().then(res => {
     dispatch(getMovies(res.data))
   })
   .catch(err => {
     console.log(err);
+    dispatch(isLoadingFalse());
+  })
+  .finally(() => {
+    dispatch(isLoadingFalse());
+  })
+}
+
+export const getCategoryListAction = (category) => (dispatch) => {
+  dispatch(resetList());
+  api.getCategoryList(category).then(res => {
+    dispatch(getCategoryList(res.data))
+  })
+  .catch(err => {
+    console.log(err);
+    // dispatch(isLoadingFalse());
+  })
+  .finally(() => {
+    // dispatch(isLoadingFalse());
   })
 }

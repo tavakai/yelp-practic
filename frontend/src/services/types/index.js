@@ -11,3 +11,8 @@ export const IS_LOADING_FALSE = 'IS_LOADING_FALSE';
 
 // DATA
 export const GET_MOVIES = 'GET_MOVIES';
+export const GET_FILTER = 'GET_FILTER';
+export const RESET_LIST = 'RESET_LIST';
+
+// LIKES
+export const LIKE_TOGGLE = 'LIKE_TOGGLE';

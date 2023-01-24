@@ -53,7 +53,12 @@ class Api {
 
   // Загрузка начальных данных
   getMovies() {
-    return axios.get('https://api.nomoreparties.co/beatfilm-movies');
+    return axios.get(`${this.baseUrl}/movies`);
+  }
+
+  // Загрузка данных категории
+  getCategoryList(category) {
+    return axios.get(`${this.baseUrl}/list/${category}`);
   }
 
   // Получить одно событие

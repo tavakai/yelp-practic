@@ -1,9 +1,9 @@
 .card {
-  max-width: 339px;
+  max-width: 200px;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   position: relative;
 }
 .card__delete-wrapper {
@@ -38,10 +38,10 @@
   display: flex;
 }
 .card__img {
-  grid-column: span 3 / auto;
   margin: 0px 0px 10px 0px;
+  max-width: 200px;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   height: 151px;
 }
 .card__link-img {
@@ -50,6 +50,9 @@
 .card__link-title {
   text-decoration: none;
   grid-column: span 2 / 3;
+}
+.card__description {
+  margin: 0;
 }
 .card__line {
   background-color: #E8E8E8;

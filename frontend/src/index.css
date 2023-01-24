@@ -1,7 +1,7 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/fonts.css');
 @import url('./components/Page/Page.css');
-@import url('./components/Header/Header.css');
+@import url('./components/Categories/Categories.css');
 @import url('./components/FilterCheckbox/FilterCheckbox.css');
 @import url('./components/Footer/Footer.css');
 @import url('./components/Movies/Movies.css');

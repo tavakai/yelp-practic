@@ -10,6 +10,8 @@ import { authCheckAction } from "../../services/actions/actions";
 import Preloader from "../Preloader/Preloader";
 import Profile from "../Profile/Profile";
 import Navigation from "../Navigation/Navigation";
+import ProductList from "../Movies/ProductList/ProductList";
+import ProfileDemo from "../Profile/ProfileDemo";
 
 function App() {
   const { isLoading } = useSelector(state => state.auth);
@@ -36,6 +38,11 @@ function App() {
               <Route path="/profile" element={
                 <ProtectedRoute>
                   <Profile />
+                </ProtectedRoute>
+              } />
+              <Route path="/list/:category" element={
+                <ProtectedRoute>
+                  <ProductList />
                 </ProtectedRoute>
               } />
             </Routes>
